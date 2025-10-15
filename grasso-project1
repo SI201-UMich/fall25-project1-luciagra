@@ -56,24 +56,52 @@ def top_subcategory_by_average_sales(data):
     return top_subcat, round(avg_sales[top_subcat], 2)
 
 
+# extra calculations
+
+def average_quantity_by_category(data):
+# Calculates the average quantity sold per category
+    category_quantities = {}
+    for row in data:
+        category = row["Category"]
+        qty = row["Quantity"]
+        category_quantities.setdefault(category, []).append(qty)
+    return {cat: round(mean(qties), 2) for cat, qties in category_quantities.items()}
+
+def percentage_negative_profit(data):
+# finds percentage of orders that have a negative profit
+    total = len(data)
+    losses = sum(1 for row in data if row["Profit"] < 0)
+    percent_loss = round((losses / total) * 100, 2)
+    return percent_loss
+
+
+
 
 # output results
 
 import os
 
-def write_results_to_file(avg_profit_dict, top_subcat_tuple, filename="results.txt"):
+def write_results_to_file(avg_profit_dict, top_subcat_tuple, avg_qty_dict, percent_loss, filename="results.txt"):
     # get folder where the script is located
     folder = os.path.dirname(os.path.abspath(__file__))
     filepath = os.path.join(folder, filename)
 
     with open(filepath, "w", encoding="utf-8") as f:
         f.write("=== SampleSuperstore Data Analysis ===\n\n")
+
         f.write("Average Profit by Region:\n")
         for region, profit in avg_profit_dict.items():
             f.write(f" - {region}: ${profit}\n")
 
         f.write("\nTop Sub-Category by Average Sales:\n")
         f.write(f" - {top_subcat_tuple[0]} (${top_subcat_tuple[1]})\n")
+
+        f.write("\nAverage Quantity Sold per Category:\n")
+        for cat, qty in avg_qty_dict.items():
+            f.write(f" - {cat}: {qty} items\n")
+
+        f.write("\nPercentage of Orders with Negative Profit:\n")
+        f.write(f" - {percent_loss}% of all orders\n")
 
     print(f"Results written to: {filepath}")
 
@@ -124,7 +152,10 @@ def main():
     data = read_csv_to_dict("/Users/luciagrasso/Desktop/SI201/fall25-project1-luciagra/SampleSuperstore.csv")
     avg_profit = average_profit_by_region(data)
     top_subcat = top_subcategory_by_average_sales(data)
-    write_results_to_file(avg_profit, top_subcat)
+    avg_qty = average_quantity_by_category(data)
+    percent_loss = percentage_negative_profit(data)
+    
+    write_results_to_file(avg_profit, top_subcat, avg_qty, percent_loss)
 
 if __name__ == "__main__":
     # run tests

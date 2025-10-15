@@ -8,3 +8,11 @@ Average Profit by Region:
 
 Top Sub-Category by Average Sales:
  - Copiers ($2198.94)
+
+Average Quantity Sold per Category:
+ - Furniture: 3.79 items
+ - Office Supplies: 3.8 items
+ - Technology: 3.76 items
+
+Percentage of Orders with Negative Profit:
+ - 18.72% of all orders
