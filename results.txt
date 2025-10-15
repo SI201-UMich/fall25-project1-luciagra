@@ -1,0 +1,10 @@
+=== SampleSuperstore Data Analysis ===
+
+Average Profit by Region:
+ - South: $28.86
+ - West: $33.85
+ - Central: $17.09
+ - East: $32.14
+
+Top Sub-Category by Average Sales:
+ - Copiers ($2198.94)
