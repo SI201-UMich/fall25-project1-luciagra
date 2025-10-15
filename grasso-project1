@@ -70,3 +70,6 @@ def write_results_to_file(avg_profit_dict, top_subcat_tuple, filename="results.t
         f.write("\nTop Sub-Category by Average Sales:\n")
         f.write(f" - {top_subcat_tuple[0]} (${top_subcat_tuple[1]})\n")
     print(f"Results written to {filename}")
+
+
+
