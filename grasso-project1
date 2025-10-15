@@ -23,13 +23,16 @@ def read_csv_to_dict(filename):
             data.append(row)
     return data
 
+
+
+
 # calculation functions
 
 def average_profit_by_region(data):
 
 # Calculates the average profit for each region.
-# Uses: Region, Profit
-# Returns a dictionary mapping Region -> Average Profit
+# uses Region, Profit
+# returns a dictionary mapping Region, average profit
 
     region_profits = {}
     for row in data:
@@ -42,8 +45,8 @@ def average_profit_by_region(data):
 def top_subcategory_by_average_sales(data):
 
 # Calculates the average sales for each sub-category and finds the top sub-category.
-# Uses: Sub-Category, Sales, Category
-# Returns a tuple: (subcategory_name, average_sales_value)
+# uses Sub-Category, Sales, Category
+# Returns a tuple (subcategory_name, average_sales_value)
 
     sub_sales = {}
     for row in data:
@@ -73,6 +76,7 @@ def percentage_negative_profit(data):
     losses = sum(1 for row in data if row["Profit"] < 0)
     percent_loss = round((losses / total) * 100, 2)
     return percent_loss
+
 
 
 
@@ -142,6 +146,8 @@ def test_top_subcategory_by_average_sales():
     ]
     top_tie = top_subcategory_by_average_sales(tie_data)
     assert top_tie[1] == 100.00
+
+
 
 
 
