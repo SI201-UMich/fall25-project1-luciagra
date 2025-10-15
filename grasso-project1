@@ -115,7 +115,7 @@ def test_top_subcategory_by_average_sales():
 # main program
 
 def main():
-    data = read_csv_to_dict("SampleSuperstore.csv")
+    data = read_csv_to_dict("/Users/luciagrasso/Desktop/SI201/fall25-project1-luciagra/SampleSuperstore.csv")
     avg_profit = average_profit_by_region(data)
     top_subcat = top_subcategory_by_average_sales(data)
     write_results_to_file(avg_profit, top_subcat)
