@@ -22,3 +22,35 @@ def read_csv_to_dict(filename):
             row["Quantity"] = int(row["Quantity"])
             data.append(row)
     return data
+
+# calculation functions
+
+def average_profit_by_region(data):
+
+# Calculates the average profit for each region.
+# Uses: Region, Profit
+# Returns a dictionary mapping Region -> Average Profit
+
+    region_profits = {}
+    for row in data:
+        region = row["Region"]
+        profit = row["Profit"]
+        region_profits.setdefault(region, []).append(profit)
+    return {region: round(mean(profits), 2) for region, profits in region_profits.items()}
+
+
+def top_subcategory_by_average_sales(data):
+
+# Calculates the average sales for each sub-category and finds the top sub-category.
+# Uses: Sub-Category, Sales, Category
+# Returns a tuple: (subcategory_name, average_sales_value)
+
+    sub_sales = {}
+    for row in data:
+        subcat = row["Sub-Category"]
+        sale = row["Sales"]
+        sub_sales.setdefault(subcat, []).append(sale)
+
+    avg_sales = {subcat: mean(values) for subcat, values in sub_sales.items()}
+    top_subcat = max(avg_sales, key=avg_sales.get)
+    return top_subcat, round(avg_sales[top_subcat], 2)
