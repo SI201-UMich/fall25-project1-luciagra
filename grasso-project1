@@ -76,7 +76,6 @@ def percentage_negative_profit(data):
 
 
 
-
 # output results
 
 import os
