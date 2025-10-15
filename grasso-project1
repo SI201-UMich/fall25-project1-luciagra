@@ -1,0 +1,24 @@
+# Author: Lucia Grasso
+# UMID: 24150074
+# Course: SI 201 - Project 1
+# Dataset: SampleSuperstore.csv
+# AI Tools Used: ChatGPT (for code structure and documentation help)
+
+import csv
+from statistics import mean
+
+def read_csv_to_dict(SampleSuperstore.csv):
+
+# Reads a CSV file and returns a list of dictionaries
+# Each dictionary represents one row in the dataset
+    
+    data = []
+    with open(filename, encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            # Convert numeric columns to proper data types
+            row["Sales"] = float(row["Sales"])
+            row["Profit"] = float(row["Profit"])
+            row["Quantity"] = int(row["Quantity"])
+            data.append(row)
+    return data
