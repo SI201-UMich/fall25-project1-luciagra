@@ -7,10 +7,10 @@
 import csv
 from statistics import mean
 
-def read_csv_to_dict(SampleSuperstore.csv):
+def read_csv_to_dict(filename):
 
-# Reads a CSV file and returns a list of dictionaries
-# Each dictionary represents one row in the dataset
+# read a CSV file and return a list of dictionaries
+# each dictionary represents one row in the dataset
     
     data = []
     with open(filename, encoding="utf-8") as f:
