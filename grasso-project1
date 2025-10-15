@@ -54,3 +54,19 @@ def top_subcategory_by_average_sales(data):
     avg_sales = {subcat: mean(values) for subcat, values in sub_sales.items()}
     top_subcat = max(avg_sales, key=avg_sales.get)
     return top_subcat, round(avg_sales[top_subcat], 2)
+
+# output results
+
+def write_results_to_file(avg_profit_dict, top_subcat_tuple, filename="results.txt"):
+
+# Writes the calculated results to a plain text file.
+
+    with open(filename, "w", encoding="utf-8") as f:
+        f.write("=== SampleSuperstore Data Analysis ===\n\n")
+        f.write("Average Profit by Region:\n")
+        for region, profit in avg_profit_dict.items():
+            f.write(f" - {region}: ${profit}\n")
+
+        f.write("\nTop Sub-Category by Average Sales:\n")
+        f.write(f" - {top_subcat_tuple[0]} (${top_subcat_tuple[1]})\n")
+    print(f"Results written to {filename}")
