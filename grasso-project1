@@ -59,7 +59,7 @@ def top_subcategory_by_average_sales(data):
 # extra calculations
 
 def average_quantity_by_category(data):
-# Calculates the average quantity sold per category
+# calculates the average quantity sold per category
     category_quantities = {}
     for row in data:
         category = row["Category"]
