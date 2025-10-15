@@ -59,7 +59,7 @@ def top_subcategory_by_average_sales(data):
 
 def write_results_to_file(avg_profit_dict, top_subcat_tuple, filename="results.txt"):
 
-# Writes the calculated results to a plain text file.
+# writes the calculated results to a plain text file
 
     with open(filename, "w", encoding="utf-8") as f:
         f.write("=== SampleSuperstore Data Analysis ===\n\n")
@@ -72,4 +72,41 @@ def write_results_to_file(avg_profit_dict, top_subcat_tuple, filename="results.t
     print(f"Results written to {filename}")
 
 
+
+
+# test functions
+
+def test_average_profit_by_region():
+    # general case
+    test_data = [
+        {"Region": "East", "Profit": 100},
+        {"Region": "East", "Profit": 200},
+        {"Region": "West", "Profit": 50}
+    ]
+    result = average_profit_by_region(test_data)
+    assert result["East"] == 150
+    assert result["West"] == 50
+
+    # edge case: one region only
+    result = average_profit_by_region([{"Region": "South", "Profit": 0}])
+    assert result["South"] == 0
+
+def test_top_subcategory_by_average_sales():
+    # general case
+    test_data = [
+        {"Sub-Category": "Phones", "Sales": 500, "Category": "Technology"},
+        {"Sub-Category": "Chairs", "Sales": 300, "Category": "Furniture"},
+        {"Sub-Category": "Phones", "Sales": 700, "Category": "Technology"}
+    ]
+    top = top_subcategory_by_average_sales(test_data)
+    assert top[0] == "Phones"
+    assert round(top[1], 2) == 600.00
+
+    # edge case: tie in averages
+    tie_data = [
+        {"Sub-Category": "Tables", "Sales": 100, "Category": "Furniture"},
+        {"Sub-Category": "Lamps", "Sales": 100, "Category": "Furniture"}
+    ]
+    top_tie = top_subcategory_by_average_sales(tie_data)
+    assert top_tie[1] == 100.00
 
